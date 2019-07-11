@@ -209,24 +209,11 @@ public class MainActivity extends AppCompatActivity {
 
         if (seleccion.getSelectedItem().equals("Angulo entre Vectores")) {
 
-
-            //  escalar_a.setVisibility(View.VISIBLE);
-            double esA = Double.parseDouble(escalar_a.getText().toString());
-
-
-            for (int i = 0; i < 3; i++) {
-                c[i] = (esA) * (a[i]);
-            }
-
-            for (int i = 0; i < 3; i++) {
-
-
-                Toast.makeText(this, "el valor es =" + c[i], Toast.LENGTH_LONG).show();
-            }
+            anguloVectores();
         }
 
 
-    }//termina la suma de vectores
+    }//todo == Termina el Onclick------------------------------------------------------------------
 
 
     public void ocultarEscalar() {
@@ -243,6 +230,26 @@ public class MainActivity extends AppCompatActivity {
         textoEscalarA.setVisibility(View.VISIBLE);
         textoEscalarB.setVisibility(View.VISIBLE);
     }
+
+    public void anguloVectores() {
+
+        double MagnitudA = Math.sqrt((Math.pow(a[0], 2)) + (Math.pow(a[1], 2)) + (Math.pow(a[1], 2)));
+        double MagnitudB = Math.sqrt((Math.pow(b[0], 2)) + (Math.pow(b[1], 2)) + (Math.pow(b[1], 2)));
+
+
+        for (int i = 0; i < 3; i++) {
+            c[i] = a[i] * b[i];
+
+
+        }
+       double multiplicarMagnitud=MagnitudA * MagnitudB;
+        double productoPunto = Math.cos((c[0] + c[1] + c[2]) / (multiplicarMagnitud));
+
+
+        Toast.makeText(getApplicationContext(), "el angulo entre vectores es" + productoPunto, Toast.LENGTH_LONG).show();
+
+
+    }//todo == termina el metodo vector
 
 
 }
