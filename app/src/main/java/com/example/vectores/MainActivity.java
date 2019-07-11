@@ -29,7 +29,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        String[] vectores = {"Sumar", "Restar", "Multiplicacion", "Angulo entre Vectores", "Producto Cruz", "Escalar de A", "Escalar", "Unitario", "MagnitudA", "MagnitudB", "Proyeccion", "Sistemas De Fuerza"};
+        String[] vectores = {"Sumar",
+                "Restar",
+                "Producto Punto",
+                "Multiplicacion",
+                "Angulo entre Vectores",
+                "Producto Cruz",
+                "Escalar de A",
+                "Escalar de B",
+                "Escalar",
+                "Unitario de A",
+                "Unitario de B",
+                "MagnitudA",
+                "MagnitudB",
+                "Proyeccion de A sobre B",
+                "Proyeccion de B sobre A",
+                "Sistemas De Fuerza"
+        };
 
 
         //todo ==Aqui esta las Referencias de las Variables///////========
@@ -62,13 +78,53 @@ public class MainActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String opereaciones = seleccion.getSelectedItem().toString();
 
-                if (opereaciones.equals("Escalar")) {
+                if (opereaciones.equals("Escalar de A")) {
                     aparecerEscalar();
                 }//if del escalar
+
+
+                if (opereaciones.equals("Escalar de B")) {
+                    aparecerEscalar();
+                }//if del escalar
+
 
                 if (opereaciones.equals("Sumar")) {
                     ocultarEscalar();
                 }//if del sumar
+
+
+                if (opereaciones.equals("Resta")) {
+                    ocultarEscalar();
+                }//if del sumar
+                if (opereaciones.equals("Producto Punto")){
+                    ocultarEscalar();
+                }
+
+                if (opereaciones.equals("Multiplicacion")){
+                    ocultarEscalar();
+                }
+
+                if (opereaciones.equals("Angulo entre Vectores")){
+                    ocultarEscalar();
+                }
+
+                if (opereaciones.equals("Producto Cruz")){
+                    ocultarEscalar();
+                }
+                if (opereaciones.equals("MagnitudA")){
+                    ocultarEscalar();
+                }
+
+                if (opereaciones.equals("MagnitudB")){
+                    ocultarEscalar();
+                }
+                if (opereaciones.equals("Proyeccion de A sobre B")){
+                    ocultarEscalar();
+                }
+
+                if (opereaciones.equals("Proyeccion de B sobre A")){
+                    ocultarEscalar();
+                }
             }//todo termina la seleccion de click listener
 
             @Override
@@ -115,11 +171,11 @@ public class MainActivity extends AppCompatActivity {
 
 
         if (seleccion.getSelectedItem().equals("Sumar")) {
-            String cad = "los valores son ";
+            String cad = "los valores de la operacion Suma : \n";
 
             for (int i = 0; i < 3; i++) {
                 c[i] = a[i] + b[i];
-                cad = cad + "el valor: " + i + ": " + c[i] + "\n";
+                cad = cad + "posicion :" + i + " = " + c[i] + "\n";
 
             }
             Toast.makeText(this, cad, Toast.LENGTH_LONG).show();
@@ -127,38 +183,43 @@ public class MainActivity extends AppCompatActivity {
 
 
         if (seleccion.getSelectedItem().equals("Restar")) {
-
+            String cad = "los valores de la operacion Resta : \n";
             for (int i = 0; i < 3; i++) {
                 c[i] = a[i] - b[i];
-
+                cad = cad + "posicion :" + i + " = " + c[i] + "\n";
 
             }
-            for (int i = 0; i < 3; i++) {
-                //resultado.setText("<" + (c[i]) + ">");
-                Toast.makeText(this, "el valor del vector " + i + " es:" + c[i], Toast.LENGTH_LONG).show();
-            }//termina el vector
+
+            Toast.makeText(this, cad, Toast.LENGTH_LONG).show();
+
         }//todo termina el de restar
+
+        if (seleccion.getSelectedItem().equals("Producto Punto")) {
+            productoPunto();
+        }//todo termina P * Q
 
 
         if (seleccion.getSelectedItem().equals("Multiplicacion")) {
+            String cad = "los valores de la operacion Producto Punto : \n";
 
             for (int i = 0; i < 3; i++) {
                 c[i] = a[i] * b[i];
 
+                cad = cad + "posicion :" + i + " = " + c[i] + "\n";
+
 
             }
-            for (int i = 0; i < 3; i++) {
-                //resultado.setText("<" + (c[i]) + ">");
-                Toast.makeText(this, "el valor del vector " + i + " es:" + c[i], Toast.LENGTH_LONG).show();
-            }//termina el vector
-        }//todo termina el de multiplicacion
+
+            Toast.makeText(this, cad, Toast.LENGTH_LONG).show();
+
+        }//todo termina el de Producto Punto
 
 
         if (seleccion.getSelectedItem().equals("Producto Cruz")) {
             double cruzi = ((a[1] * b[2]) - (a[2] * b[1]));
             double cruzj = -((a[0] * b[2]) - (b[0] * a[2]));
             double cruzk = ((a[0] * b[1]) - (b[0] * a[1]));
-            Toast.makeText(this, "El valor cruz es: <" + cruzi + ", " + cruzj + " , " + cruzk + ">", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "El valor cruz es: < " + cruzi + " i , " + cruzj + " j , " + cruzk + "k >", Toast.LENGTH_LONG).show();
 
         }//todo aqui termina el producto cruz-------------
 
@@ -168,7 +229,7 @@ public class MainActivity extends AppCompatActivity {
         if (seleccion.getSelectedItem().equals("MagnitudA")) {
 
 
-            double Magnitud = Math.sqrt((Math.pow(a[0], 2)) + (Math.pow(a[1], 2)) + (Math.pow(a[1], 2)));
+            double Magnitud = Math.sqrt((Math.pow(a[0], 2)) + (Math.pow(a[1], 2)) + (Math.pow(a[2], 2)));
 
             Toast.makeText(this, "El valor de la magnitud del vector A  :" + Magnitud, Toast.LENGTH_LONG).show();
 
@@ -179,7 +240,7 @@ public class MainActivity extends AppCompatActivity {
         if (seleccion.getSelectedItem().equals("MagnitudB")) {
 
 
-            double Magnitud = Math.sqrt(Math.pow(b[0], 2) + Math.pow(b[1], 2) + Math.pow(b[1], 2));
+            double Magnitud = Math.sqrt(Math.pow(b[0], 2) + Math.pow(b[1], 2) + Math.pow(b[2], 2));
 
             Toast.makeText(this, "El valor de la magnitud del vector B  :" + Magnitud, Toast.LENGTH_LONG).show();
 
@@ -190,31 +251,63 @@ public class MainActivity extends AppCompatActivity {
         if (seleccion.getSelectedItem().equals("Escalar de A")) {
 
 
-            //  escalar_a.setVisibility(View.VISIBLE);
+            String cad = "los valores de la operacion Escalar A : \n";
             double esA = Double.parseDouble(escalar_a.getText().toString());
 
 
             for (int i = 0; i < 3; i++) {
                 c[i] = (esA) * (a[i]);
+
+                cad = cad + "posicion :" + i + " = " + c[i] + "\n";
             }
 
-            for (int i = 0; i < 3; i++) {
 
+            Toast.makeText(this, cad, Toast.LENGTH_LONG).show();
 
-                Toast.makeText(this, "el valor es =" + c[i], Toast.LENGTH_LONG).show();
-            }
 
         }//todo aqui termina la magnitud del vector Escalar A
+
+        if (seleccion.getSelectedItem().equals("Unitario de A")) {
+
+            vectorUnitarioA();
+        }//todo aqui termina vector unitario A
+
+        if (seleccion.getSelectedItem().equals("Unitario de B")) {
+
+            vectorUnitarioB();
+        }//todo aqui termina el Vector unitario DE B
 
 
         if (seleccion.getSelectedItem().equals("Angulo entre Vectores")) {
 
             anguloVectores();
-        }
+        }//todo aqui termina el Angulo Entre vectores
+
+
+        if (seleccion.getSelectedItem().equals("Escalar de B")) {
+
+            EscalarB();
+        }//todo aqui termina el escalar de B
+
+        if (seleccion.getSelectedItem().equals("Proyeccion de A sobre B")) {
+
+            ProyeccionAB();
+        }//todo aqui termina el escalar de B
+
+
+        if (seleccion.getSelectedItem().equals("Proyeccion de B sobre A")) {
+
+            ProyeccionBA();
+        }//todo aqui termina el escalar de B
 
 
     }//todo == Termina el Onclick------------------------------------------------------------------
 
+
+    //todo empiezan los metodo//////////////////////////////////////////////////////////////////////
+    //todo///////////////////////////////////////////////////////////////////////////////////////////
+    //todo empiezan los metodo//////////////////////////////////////////////////////////////////////
+    //todo///////////////////////////////////////////////////////////////////////////////////////////
 
     public void ocultarEscalar() {
 
@@ -232,9 +325,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void anguloVectores() {
-
-        double MagnitudA = Math.sqrt((Math.pow(a[0], 2)) + (Math.pow(a[1], 2)) + (Math.pow(a[1], 2)));
-        double MagnitudB = Math.sqrt((Math.pow(b[0], 2)) + (Math.pow(b[1], 2)) + (Math.pow(b[1], 2)));
+        double Magnituda = (Math.pow(a[0], 2)) + (Math.pow(a[1], 2)) + (Math.pow(a[2], 2));
+        double Magnitudb = (Math.pow(b[0], 2)) + (Math.pow(b[1], 2)) + (Math.pow(b[2], 2));
+        double MagnitudA = Math.sqrt(Magnituda);
+        double MagnitudB = Math.sqrt(Magnitudb);
 
 
         for (int i = 0; i < 3; i++) {
@@ -242,15 +336,139 @@ public class MainActivity extends AppCompatActivity {
 
 
         }
-       double multiplicarMagnitud=MagnitudA * MagnitudB;
-        double productoPunto = Math.cos((c[0] + c[1] + c[2]) / (multiplicarMagnitud));
+        double productoPunto = c[0] + c[1] + c[2];
+        double magnitudXmagnitud = MagnitudA * MagnitudB;
+        double calcularValores = (productoPunto) / (magnitudXmagnitud);
+        double calculoAngulo = Math.acos(calcularValores);
+        double angulo = calculoAngulo * (180 / Math.PI);
 
 
-        Toast.makeText(getApplicationContext(), "el angulo entre vectores es" + productoPunto, Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "el angulo entre vectores es de :" + angulo + " Grados", Toast.LENGTH_LONG).show();
 
 
-    }//todo == termina el metodo vector
+    }//todo == termina el Angulo Entre Vectores
 
+
+    public void EscalarB() {
+
+        String cad = "los valores de la operacion Escalar B : \n";
+        double esB = Double.parseDouble(escalar_b.getText().toString());
+
+
+        for (int i = 0; i < 3; i++) {
+            c[i] = (esB) * (b[i]);
+
+            cad = cad + "posicion :" + i + " = " + c[i] + "\n";
+        }
+
+
+        Toast.makeText(this, cad, Toast.LENGTH_LONG).show();
+
+    }//todo == ESCALAR DE B=======================================
+
+
+    public void ProyeccionAB() {
+
+        String cad = " la proyeccion de A sobre B es :\n";
+
+        double Magnituda = (Math.pow(a[0], 2)) + (Math.pow(a[1], 2)) + (Math.pow(a[2], 2));
+
+
+        double Punto = (
+                (a[0] * b[0]) +
+                        (a[1] * b[1]) +
+                        (a[2] * b[2])
+        );
+
+
+        double MagnitudA1 = (Math.sqrt(Magnituda));
+        double MagnitudA2 = Math.pow(MagnitudA1, 2);
+        for (int i = 0; i < 3; i++) {
+
+
+            c[i] = ((Punto) / (MagnitudA2)) * (a[i]);
+
+
+            cad = cad + "posicion :" + i + " = " + c[i] + "\n";
+
+        }
+
+
+        Toast.makeText(this, cad, Toast.LENGTH_LONG).show();
+
+
+    }
+
+
+    public void ProyeccionBA() {
+
+        String cad = " la proyeccion de A sobre B es :\n";
+
+        double Magnituda = (Math.pow(b[0], 2)) + (Math.pow(b[1], 2)) + (Math.pow(b[2], 2));
+
+
+        double Punto = (
+                (a[0] * b[0]) +
+                        (a[1] * b[1]) +
+                        (a[2] * b[2])
+        );
+
+
+        double MagnitudA1 = (Math.sqrt(Magnituda));
+        double MagnitudA2 = Math.pow(MagnitudA1, 2);
+        for (int i = 0; i < 3; i++) {
+
+
+            c[i] = ((Punto) / (MagnitudA2)) * (b[i]);
+
+
+            cad = cad + "posicion :" + i + " = " + c[i] + "\n";
+
+        }
+
+
+        Toast.makeText(this, cad, Toast.LENGTH_LONG).show();
+
+
+    }//todo proyeccion de B SOBRE A
+
+    public void productoPunto() {
+
+        double Punto = (
+                (a[0] * b[0]) +
+                        (a[1] * b[1]) +
+                        (a[2] * b[2])
+        );
+
+
+        Toast.makeText(this, "el producto punto es :\n" + Punto, Toast.LENGTH_LONG).show();
+    }//todo operacion producto Punto
+
+    public void vectorUnitarioA() {
+        double Magnituda = (Math.pow(a[0], 2)) + (Math.pow(a[1], 2)) + (Math.pow(a[2], 2));
+        double MagnitudR= (Math.sqrt(Magnituda));
+        String cad = "el vector Unitario de A: \n";
+        for (int i = 0; i < 3; i++) {
+            c[i] = (a[i]) / (MagnitudR);
+            cad = cad + "posicion :" + i + " = " + c[i] + "\n";
+        }
+        Toast.makeText(this, cad, Toast.LENGTH_LONG).show();
+    }//todo Vector unitario A------------------
+
+
+    public void vectorUnitarioB() {
+        double Magnituda = (Math.pow(b[0], 2)) + (Math.pow(b[1], 2)) + (Math.pow(b[2], 2));
+        String cad = "el vector Unitario de B: \n";
+        double MagnitudR= (Math.sqrt(Magnituda));
+        for (int i = 0; i < 3; i++) {
+            c[i] = (b[i]) / (MagnitudR);
+
+            cad = cad + "posicion :" + i + " = " + c[i] + "\n";
+
+        }
+        Toast.makeText(this, cad, Toast.LENGTH_LONG).show();
+
+    }//todo Vector unitario B------------------
 
 }
 
